@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Jam - Vote Counter Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🎵 Music Jam Vote Counter</h1>
+      <p class="subtitle">Generate your OBS browser source to display your vote count</p>
+    </header>
+
+    <main class="main-content">
+      <div class="setup-section">
+        <h2>Setup Your Counter</h2>
+        
+        <div class="form-group">
+          <label for="song-id">Your Song ID</label>
+          <input 
+            type="text" 
+            id="song-id" 
+            placeholder="Enter your unique song ID"
+            class="input-field"
+          >
+          <p class="help-text">This is the unique ID for your song (provided by event organizers)</p>
+        </div>
+
+        <div class="form-group">
+          <label>Counter Style</label>
+          <div class="style-options">
+            <label class="radio-option">
+              <input type="radio" name="style" value="minimal" checked>
+              <span>Minimal</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="style" value="detailed">
+              <span>Detailed</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="style" value="animated">
+              <span>Animated</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="refresh-rate">Refresh Rate (seconds)</label>
+          <input 
+            type="number" 
+            id="refresh-rate" 
+            value="5" 
+            min="1" 
+            max="60"
+            class="input-field"
+          >
+          <p class="help-text">How often the counter updates (1-60 seconds)</p>
+        </div>
+
+        <button id="generate-btn" class="generate-btn">Generate Browser Source URL</button>
+      </div>
+
+      <div class="preview-section" id="preview-section" style="display: none;">
+        <h2>Your Browser Source</h2>
+        
+        <div class="url-display">
+          <label>OBS Browser Source URL</label>
+          <div class="url-container">
+            <input 
+              type="text" 
+              id="generated-url" 
+              readonly 
+              class="url-field"
+            >
+            <button id="copy-btn" class="copy-btn">Copy</button>
+          </div>
+        </div>
+
+        <div class="instructions">
+          <h3>How to Add to OBS</h3>
+          <ol>
+            <li>Open OBS Studio</li>
+            <li>Click the <strong>+</strong> button in the Sources panel</li>
+            <li>Select <strong>Browser</strong></li>
+            <li>Paste the URL above into the <strong>URL</strong> field</li>
+            <li>Set width to <strong>400</strong> and height to <strong>200</strong></li>
+            <li>Check <strong>Shutdown source when not visible</strong></li>
+            <li>Click <strong>OK</strong></li>
+          </ol>
+        </div>
+
+        <div class="preview-container">
+          <h3>Preview</h3>
+          <p class="help-text">This is how your counter will look in OBS</p>
+          <iframe id="preview-frame" class="preview-frame"></iframe>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Made for Music Jam Event</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
