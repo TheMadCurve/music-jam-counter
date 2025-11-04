@@ -4,7 +4,7 @@ A customizable vote counter widget for OBS that displays real-time vote counts f
 
 ## For Artists
 
-1. Visit the generator page: `https://yourusername.github.io/music-jam-counter/`
+1. Visit the generator page: `https://themadcurve.github.io/music-jam-counter/`
 2. Enter your unique Song ID (provided by event organizers)
 3. Choose your preferred style
 4. Set your refresh rate

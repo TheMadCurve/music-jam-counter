@@ -4,7 +4,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // Get the base URL for the counter widget
 // This will be your GitHub Pages URL for the counter repository
-const BASE_URL = window.location.origin + window.location.pathname.replace('index.html', '');
+const BASE_URL = 'https://themadcurve.github.io/music-jam-counter/';
 
 // DOM elements
 const songIdInput = document.getElementById('song-id');
