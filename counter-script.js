@@ -21,6 +21,7 @@ counter.classList.remove('minimal', 'detailed', 'animated');
 counter.classList.add(style);
 
 // Fetch vote count
+// Replace the fetchVoteCount function in counter-script.js
 async function fetchVoteCount() {
   if (!songId) {
     voteCountElement.textContent = 'ERROR';
@@ -30,25 +31,31 @@ async function fetchVoteCount() {
   }
 
   try {
-    // Get sum of all votes for this song
+    // Get total votes from the public view
     const { data, error } = await supabase
-      .from('votes')
-      .select('points')
-      .eq('song_id', songId);
+      .from('public_vote_counts')
+      .select('total_votes')
+      .eq('song_id', songId)
+      .single();
 
     if (error) {
       throw error;
     }
 
-    // Calculate total votes
-    const totalVotes = data.reduce((sum, vote) => sum + vote.points, 0);
+    const totalVotes = data?.total_votes || 0;
     
     // Animate count change
     animateCount(parseInt(voteCountElement.textContent), totalVotes);
 
   } catch (error) {
     console.error('Error fetching votes:', error);
-    counter.classList.add('error');
+    
+    // If no votes found, show 0 instead of error
+    if (error.code === 'PGRST116') {
+      animateCount(parseInt(voteCountElement.textContent), 0);
+    } else {
+      counter.classList.add('error');
+    }
   }
 }
 
